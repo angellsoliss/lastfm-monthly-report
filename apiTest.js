@@ -10,7 +10,8 @@ if (!API_KEY) {
 
 //api calls are made through this url
 const BASE_URL = 'https://ws.audioscrobbler.com/2.0/';
-const params = new URLSearchParams({
+
+const album_params = new URLSearchParams({
   method: 'user.gettopalbums',
   user: USERNAME,
   period: '1month',
@@ -19,10 +20,20 @@ const params = new URLSearchParams({
   format: 'json'
 });
 
-const CONSTRUCTED_URL = `${BASE_URL}?${params.toString()}`
+const artist_params = new URLSearchParams({
+  method: 'user.gettopartists',
+  user: USERNAME,
+  period: '1month',
+  limit: '10',
+  api_key: API_KEY,
+  format: 'json'
+});
+
+const CONSTRUCTED_ALBUM_URL = `${BASE_URL}?${album_params.toString()}`
+const CONSTRUCTED_ARTIST_URL = `${BASE_URL}?${artist_params.toString()}`
 
 async function getAlbums() {
-  const result = await fetch(CONSTRUCTED_URL);
+  const result = await fetch(CONSTRUCTED_ALBUM_URL);
   const data = await result.json();
 
   //fetch album array from json
@@ -44,8 +55,30 @@ async function getAlbums() {
     console.log(`${a.cover}`);
     console.log(`----------------------------------------------------------------------------------`);
   });
-
 }
 
-console.log(CONSTRUCTED_URL);
-getAlbums().catch(console.error);
+async function getArtists() {
+  const result = await fetch(CONSTRUCTED_ARTIST_URL);
+  const data = await result.json();
+  
+  const artists = data.topartists?.artist || [];
+
+  const formattedArtists = artists.map(artist => ({
+    name: artist.name,
+    playcount: artist.playcount
+  }));
+
+  formattedArtists.forEach(ar => {
+    console.log(`${ar.name} - ${ar.playcount} plays`);
+    console.log(`----------------------------------------------------------------------------------`);
+  });
+}
+
+async function main() {
+  await getAlbums();
+  await getArtists();
+}
+
+console.log(CONSTRUCTED_ALBUM_URL);
+console.log(CONSTRUCTED_ARTIST_URL);
+main().catch(console.error);

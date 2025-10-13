@@ -25,10 +25,26 @@ async function getAlbums() {
   const result = await fetch(CONSTRUCTED_URL);
   const data = await result.json();
 
+  //fetch album array from json
   const albums = data.topalbums?.album || [];
-  for (const album of albums) {
-    console.log(`${album.artist.name} - ${album.name} (${album.playcount} plays)`);
-  }
+  
+  const formattedAlbums = albums.map(album => {
+    const cover = album.image?.find(img => img.size === `extralarge`)?.[`#text`] || `no image available`;
+    return {
+      artist: album.artist.name,
+      album: album.name,
+      playcount: album.playcount,
+      cover      
+    };
+  });
+
+  formattedAlbums.forEach(a => {
+    console.log(`${a.artist} - ${a.album}`);
+    console.log(`${a.playcount} plays`);
+    console.log(`${a.cover}`);
+    console.log(`----------------------------------------------------------------------------------`);
+  });
+
 }
 
 console.log(CONSTRUCTED_URL);

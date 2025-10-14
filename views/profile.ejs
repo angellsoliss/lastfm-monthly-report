@@ -7,23 +7,29 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <h1>Last.fm recap for <%= username %></h1>
-
-  <h2>Top Albums</h2>
-  <div class="grid">
+  <div class="profile_wrapper">
+    <div class="grid">
     <% albums.slice(0, 49).forEach(album => { %>
       <div class="album">
         <img src="<%= album.cover %>" alt="<%= album.album %> cover">
       </div>
     <% }) %>
+    </div>
 
+    <div class="artists">
     <h2>Top Artists</h2>
-    <ul>
+      <ol>
         <% artists.forEach(artist => { %>
-            <li>
-                <strong><%= artist.name %></strong> (<%= artist.playcount %> plays)
-            </li>
+          <li>
+            <strong><%= artist.name %></strong> (<%= artist.playcount %> plays)
+          </li>
         <% }) %>
+      </ol>
+    </div>
+
+    <div class="site_name">
+      <h2>report.6lass.com</h2>
+    </div>
   </div>
 </body>
 </html>

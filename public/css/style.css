@@ -2,6 +2,7 @@
 
 *{
     font-family:'Poppins', sans-serif;
+    font-weight: 400;
 }
 
 body {
@@ -48,6 +49,7 @@ button {
 
 .username_box h1{
     font-size: 1.2rem;
+    text-align: center;
 }
 
 #usernameForm {
@@ -72,10 +74,12 @@ button {
 }
 
 .grid {
+    padding: 2rem 2rem 1rem 2rem;
     display: grid;
     grid-template-columns: repeat(7, 50px); /* 7 columns */
     grid-template-rows: repeat(7, 50px); /* 7 rows */
     gap: 0; /* no space between items */
+    justify-content: center; 
 }
 
 .album {
@@ -84,10 +88,42 @@ button {
 }
 
 .album img {
-    width: 50px;       /* fill the entire grid cell */
+    width: 3.125rem;       /* fill the entire grid cell */
     height: 50px;      /* maintain aspect ratio */
     object-fit: cover;
     display: block;    /* remove default inline spacing */
+}
+
+.profile_wrapper{
+    width: 100%;
+    min-height: 100svh;
+    background: linear-gradient(180deg,#d1170e, #121212);
+    background-size: 100%;
+}
+
+.artists{
+    justify-content: center;
+    display: grid;
+    padding: 0rem 2rem 2rem 2rem;
+    margin: 0rem 4rem 0 0;
+}
+
+.artists h2{
+    margin: 0 0 0 0; /* top, right, bottom, left */
+}
+.artists ol{
+    margin: 0.1rem 0 0 0;
+    padding-left: 1rem; /* keep bullets aligned nicely */
+    color: #8C8C8C;
+}
+
+.site_name {
+    position: fixed;      
+    bottom: 0rem;         
+    right: 1rem;          
+    font-size: 0.8rem;    
+    color: white;        
+    z-index: 1000;        
 }
 
 @keyframes color{

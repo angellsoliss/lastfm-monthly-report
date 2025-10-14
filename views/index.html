@@ -8,14 +8,10 @@
 </head>
 <body>
     <h1>Enter your last.fm username:</h1>
-    <form id="usernameForm">
-        <input type="text" id="usernameInput" placeholder="Enter username" />
+    <form id="usernameForm" action="/api/username" method="post">
+        <input type="text" id="usernameInput" name="username" placeholder="Enter username" required />
         <button id="submitBtn">Submit</button>
     </form>
-    
-    
-    <h1>Output:</h1>
-    <p id="output"></p>
 
     <script src="js/script.js"></script>
 </body>

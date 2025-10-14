@@ -1,0 +1,17 @@
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns */
+    gap: 0; /* no space between items */
+}
+
+.album {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.album img {
+    width: 100%;       /* fill the entire grid cell */
+    height: auto;      /* maintain aspect ratio */
+    display: block;    /* remove default inline spacing */
+}

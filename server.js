@@ -27,11 +27,82 @@ const port = 3000; //set port
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "views")));
 
+//used to parse form submissions
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 //init ejs for variable display in html
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, '/views/index.html'));
+});
+
+//handle POST from form
+app.post("/api/username", async (req, res) => {
+    const { username } = req.body;
+    console.log("Username received:", username);
+
+    //construct urls for api calls
+    const albumParams = new URLSearchParams({
+        method: 'user.gettopalbums',
+        user: username,
+        period: '1month',
+        limit: '55',
+        api_key: API_KEY,
+        format: 'json'
+    });
+    const artistParams = new URLSearchParams({
+        method: 'user.gettopartists',
+        user: username,
+        period: '1month',
+        limit: '10',
+        api_key: API_KEY,
+        format: 'json'
+    });
+    const CONSTRUCTED_ALBUM_URL = `https://ws.audioscrobbler.com/2.0/?${albumParams.toString()}`;
+    const CONSTRUCTED_ARTIST_URL = `https://ws.audioscrobbler.com/2.0/?${artistParams.toString()}`;
+
+    try {
+        //fetch albums
+        const albumResponse = await fetch(CONSTRUCTED_ALBUM_URL);
+        const albumData = await albumResponse.json();
+        const albums = albumData.topalbums?.album || [];
+
+        const formattedAlbums = albums
+          .filter(album => {
+            //exclude albums with no art
+            const cover = album.image?.find(img => img.size === 'extralarge')?.['#text'];
+            return cover && cover !== '';
+          })
+          .map(album => ({
+            cover: album.image.find(img => img.size === 'extralarge')['#text'],
+            artist: album.artist.name,
+            album: album.name,
+            playcount: album.playcount
+          }));
+
+        //fetch artists
+        const artistResponse = await fetch(CONSTRUCTED_ARTIST_URL);
+        const artistData = await artistResponse.json();
+        const artists = artistData.topartists?.artist || [];
+
+        const formattedArtists = artists.map(artist => ({
+            name: artist.name,
+            playcount: artist.playcount
+        }));
+
+        //pass data to ejs
+        res.render("profile", { 
+            username, 
+            albums: formattedAlbums, 
+            artists: formattedArtists 
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.send("Error fetching data from Last.fm");
+    }
 });
 
 //start express server

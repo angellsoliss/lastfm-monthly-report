@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Last.fm Recap for <%= username %></title>
+    <style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr); /* 7 columns */
+        gap: 0; /* no space between items */
+    }
+
+    .album {
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .album img {
+        width: 100%;       /* fill the entire grid cell */
+        height: auto;      /* maintain aspect ratio */
+        display: block;    /* remove default inline spacing */
+    }
+    </style>
+</head>
+<body>
+  <h1>Last.fm recap for <%= username %></h1>
+
+  <h2>Top Albums</h2>
+  <div class="grid">
+    <% albums.slice(0, 49).forEach(album => { %>
+      <div class="album">
+        <img src="<%= album.cover %>" alt="<%= album.album %> cover">
+      </div>
+    <% }) %>
+
+    <h2>Top Artists</h2>
+    <ul>
+        <% artists.forEach(artist => { %>
+            <li>
+                <strong><%= artist.name %></strong> (<%= artist.playcount %> plays)
+            </li>
+        <% }) %>
+  </div>
+</body>
+</html>

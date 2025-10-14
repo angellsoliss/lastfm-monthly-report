@@ -23,6 +23,10 @@ if (!API_KEY) {
 const app = express(); //init express
 const port = 3000; //set port
 
+//serve files statically
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "views")));
+
 //init ejs for variable display in html
 app.set("view engine", "ejs");
 

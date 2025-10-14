@@ -1,7 +1,23 @@
 {
   "type": "module",
   "dependencies": {
+    "axios": "^1.12.2",
     "dotenv": "^17.2.3",
-    "node-fetch": "^3.3.2"
-  }
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "node-fetch": "^3.3.2",
+    "querystring": "^0.2.1"
+  },
+  "name": "lastfm-monthy-report",
+  "version": "1.0.0",
+  "main": "apiTest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

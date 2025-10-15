@@ -89,11 +89,28 @@ app.post("/api/username", async (req, res) => {
             playcount: artist.playcount
         }));
 
+        //display date
+        const today = new Date();
+        let reportMonth;
+
+        const currentMonth = today.getMonth();
+        const currentYear = today.getFullYear();
+        const currentDay = today.getDate();
+
+        //if the current day of the month is >= 20, report month is the current month, previous month otherwise
+        if (currentDay >= 20){
+            reportMonth = new Date(currentYear, currentMonth, 1).toLocaleString('default', { month: 'long' });
+        } else {
+            const prevMonthDate = new Date(currentYear, currentMonth - 1, 1);
+            reportMonth = prevMonthDate.toLocaleString('default', { month: 'long' });
+        }
+
         //pass data to ejs
         res.render("profile", { 
             username, 
             albums: formattedAlbums, 
-            artists: formattedArtists 
+            artists: formattedArtists,
+            reportMonth: reportMonth 
         });
 
     } catch (err) {

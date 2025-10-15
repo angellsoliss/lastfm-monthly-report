@@ -110,9 +110,11 @@ button {
 
 .artists h2{
     margin: 0 0 0 0; /* top, right, bottom, left */
+    font-size: 1.4rem;
 }
 .artists ol{
     margin: 0.1rem 0 0 0;
+    font-size: 1rem;
     padding-left: 1rem; /* keep bullets aligned nicely */
     color: #8C8C8C;
 }

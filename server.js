@@ -94,15 +94,15 @@ app.post("/api/username", async (req, res) => {
           let vibrantHex = "#d1170e"
           
           if (topAlbumCover){
-            console.log(topAlbumCover);
+            //console.log(topAlbumCover);
             const palette = await Vibrant.from(topAlbumCover).getPalette();
             const rgb = palette.Vibrant._rgb;
             
             if (rgb){
                 vibrantHex = rgbToHex(rgb[0], rgb[1], rgb[2])
             }
-            console.log(vibrantHex);
-            console.log(palette);
+            //console.log(vibrantHex);
+            //console.log(palette);
           }
 
         //fetch artists

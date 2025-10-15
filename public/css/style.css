@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*{
-    font-family:'Poppins', sans-serif;
+* {
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
+    box-sizing: border-box; /* ensures padding/border don't break layout */
+    margin: 0;
+    padding: 0;
 }
 
 body {
     background: #121212;
     color: white;
-    margin: 0;
-    overflow-x: hidden; /* hide horizontal scrollbar*/
+    overflow-x: hidden;
     overflow-y: hidden;
 }
 
 button {
-    display: block;
-    margin: 0 auto;
     padding: 0.625rem 1.25rem;
     font-size: 0.75rem;
     border: none;
@@ -26,118 +26,125 @@ button {
     transition: background 0.3s ease;
 }
 
-.username_wrapper{
+.username_wrapper {
     width: 100%;
+    min-height: 100svh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100svh;
     background: linear-gradient(45deg, #d1170e, #121212, #FFFFFF);
     background-size: 300% 300%;
     animation: color 25s ease-in-out infinite;
 }
 
-.username_box{
-    position: relative;
-    width: 15rem;
-    height: 4rem;
+.username_box {
+    width: 90vw;              /* responsive width */
+    height: 17vh;
+    max-width: 390px;         /* iphone 13 pro width */
+    aspect-ratio: 390 / 844;  /* iphone 13 pro ratio */
+    border-radius: 1rem;
+    padding: 1rem;
     backdrop-filter: blur(1000px);
-    border-radius: 0.938rem;
-    padding: 2rem 3rem 4rem 3rem;
-    box-shadow: 0rem 0rem 0.625rem 0.125rem rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.username_box h1{
+.username_box h1 {
     font-size: 1.2rem;
     text-align: center;
+    margin-bottom: 0.5rem;
 }
 
 #usernameForm {
-    display: flex;       
-    gap: 0.5rem;         
-    justify-content: center; 
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: center;
     align-items: center;
 }
 
 #usernameInput {
-    flex: 1;             
-    padding: 0.625rem;   
+    flex: 1;
+    padding: 0.625rem;
     font-size: 0.75rem;
     border-radius: 0.313rem;
     border: none;
 }
 
 #submitBtn {
-    display: inline-block; 
-    margin: 0;             
     padding: 0.625rem 1.25rem;
 }
 
 .grid {
-    padding: 2rem 2rem 1rem 2rem;
+    width: 90vw;             
+    max-width: 390px;
     display: grid;
-    grid-template-columns: repeat(7, 50px); /* 7 columns */
-    grid-template-rows: repeat(7, 50px); /* 7 rows */
-    gap: 0; /* no space between items */
-    justify-content: center; 
-}
-
-.album {
-    text-align: center;
-    font-size: 0.9rem;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 0;
+    justify-content: center;
+    aspect-ratio: 1 / 1;       /* make grid square */
+    margin: 1rem auto;
 }
 
 .album img {
-    width: 3.125rem;       /* fill the entire grid cell */
-    height: 50px;      /* maintain aspect ratio */
+    width: 100%;
+    aspect-ratio: 1 / 1;  
     object-fit: cover;
-    display: block;    /* remove default inline spacing */
+    display: block;
 }
 
-.profile_wrapper{
+.profile_wrapper {
     width: 100%;
     min-height: 100svh;
     background: linear-gradient(180deg,#d1170e, #121212);
-    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
 }
 
-.artists{
-    justify-content: center;
-    display: grid;
-    padding: 0rem 2rem 2rem 2rem;
-    margin: 0rem 4rem 0 0;
+.artists {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90vw;
+    max-width: 390px;
+    margin-top: 0rem;
 }
 
-.artists h2{
-    margin: 0 0 0 0; /* top, right, bottom, left */
-    font-size: 1.4rem;
+.artists h2 {
+    margin-bottom: 0.25rem;
+    font-size: 4.8vw;
 }
-.artists ol{
-    margin: 0.1rem 0 0 0;
-    font-size: 1rem;
-    padding-left: 1rem; /* keep bullets aligned nicely */
+
+.artists ol {
+    margin: 0;
+    padding-left: 1rem;
     color: #8C8C8C;
+    font-size: 4.8vw;
 }
 
 .site_name {
-    position: fixed;      
-    bottom: 0rem;         
-    right: 1rem;          
-    font-size: 0.8rem;    
-    color: white;        
-    z-index: 1000;        
+    position: fixed;
+    bottom: 0.7rem;
+    right: 0.7rem;
+    font-size: 0.7rem;
+    color: white;
+    z-index: 1000;
 }
 
-@keyframes color{
-    0%{
+@keyframes color {
+    0% {
         background-position: 0 50%;
     }
-
-    50%{
+    50% {
         background-position: 100% 50%;
     }
-
-    100%{
+    100% {
         background-position: 0 50%;
     }
 }

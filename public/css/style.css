@@ -8,6 +8,17 @@
     padding: 0;
 }
 
+.month {
+    color: var(--theme-color);
+    font-style: italic;
+}
+
+.scrobbles {
+    color: gray;
+    font-weight: thin;
+    font-style: oblique;
+}
+
 body {
     background: #121212;
     color: white;
@@ -22,8 +33,6 @@ button {
     background-color: #d1170e;
     color: black;
     border-radius: 0.313rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
 }
 
 .username_wrapper {
@@ -38,7 +47,7 @@ button {
 }
 
 .username_box {
-    width: 90vw;              /* responsive width */
+    width: 75vw;              /* responsive width */
     height: 17vh;
     max-width: 390px;         /* iphone 13 pro width */
     aspect-ratio: 390 / 844;  /* iphone 13 pro ratio */
@@ -61,7 +70,7 @@ button {
 #usernameForm {
     display: flex;
     gap: 0.5rem;
-    width: 100%;
+    width: 50%;
     justify-content: center;
     align-items: center;
 }
@@ -100,7 +109,7 @@ button {
 .profile_wrapper {
     width: 100%;
     min-height: 100svh;
-    background: linear-gradient(180deg,#d1170e, #121212);
+    background: linear-gradient(180deg, var(--theme-color), #030303, #030303);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -117,14 +126,14 @@ button {
 }
 
 .artists h2 {
-    margin-bottom: 0.25rem;
-    font-size: 4.8vw;
+    margin-bottom: 0rem;
+    font-size: 7vw;
 }
 
 .artists ol {
     margin: 0;
-    padding-left: 1rem;
-    color: #8C8C8C;
+    padding-left: 1.5rem;
+    color: #FFFFFF;
     font-size: 4.8vw;
 }
 

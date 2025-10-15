@@ -4,6 +4,7 @@
     "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "get-image-colors": "^4.0.1",
     "node-fetch": "^3.3.2",
     "node-vibrant": "^4.0.3"
   },

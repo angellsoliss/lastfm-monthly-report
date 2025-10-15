@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Last.fm Recap for <%= username %></title>
   <link rel="stylesheet" href="/css/style.css">
+
+
 </head>
-<body>
+<body style="--theme-color: <%- color %>;">
   <div class="profile_wrapper">
     <div class="grid">
     <% albums.slice(0, 49).forEach(album => { %>
@@ -17,18 +19,18 @@
     </div>
 
     <div class="artists">
-    <h2>Top Artists: <%= reportMonth %></h2>
+    <h2>Top Artists: <span class="month"><%= reportMonth %></span></h2>
       <ol>
         <% artists.forEach(artist => { %>
           <li>
-            <strong><%= artist.name %></strong> (<%= artist.playcount %> plays)
+            <strong><%= artist.name %></strong> <span class="scrobbles"><%= artist.playcount %> plays</span>
           </li>
         <% }) %>
       </ol>
     </div>
 
     <div class="site_name">
-      <h2>report.6lass.com</h2>
+      <h2><span class="month">report.6lass.com</span></h2>
     </div>
   </div>
 </body>

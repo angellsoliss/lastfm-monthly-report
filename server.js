@@ -2,6 +2,7 @@ import express from "express";
 import 'dotenv/config';
 import path from "path";
 import { fileURLToPath } from "url";
+import { Vibrant } from "node-vibrant/node";
 
 //convert path which is currently in URL format to conventional path format
 const __filename = fileURLToPath(import.meta.url);
@@ -30,6 +31,15 @@ app.use(express.json());
 
 //init ejs for variable display in html
 app.set("view engine", "ejs");
+
+//needed for gradient
+function rgbToHex(r, g, b) {
+  const toHex = (x) => {
+    const hex = Math.round(x).toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+  };
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, '/views/index.html'));
@@ -79,6 +89,22 @@ app.post("/api/username", async (req, res) => {
             playcount: album.playcount
           }));
 
+          //get top album cover for gradient color
+          const topAlbumCover = formattedAlbums.length > 0 ? formattedAlbums[0].cover : null;
+          let vibrantHex = "#d1170e"
+          
+          if (topAlbumCover){
+            console.log(topAlbumCover);
+            const palette = await Vibrant.from(topAlbumCover).getPalette();
+            const rgb = palette.Vibrant._rgb;
+            
+            if (rgb){
+                vibrantHex = rgbToHex(rgb[0], rgb[1], rgb[2])
+            }
+            console.log(vibrantHex);
+            console.log(palette);
+          }
+
         //fetch artists
         const artistResponse = await fetch(CONSTRUCTED_ARTIST_URL);
         const artistData = await artistResponse.json();
@@ -110,7 +136,8 @@ app.post("/api/username", async (req, res) => {
             username, 
             albums: formattedAlbums, 
             artists: formattedArtists,
-            reportMonth: reportMonth 
+            reportMonth: reportMonth,
+            color : vibrantHex
         });
 
     } catch (err) {

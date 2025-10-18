@@ -47,9 +47,8 @@ button {
 }
 
 .username_box {
-    width: 75vw;              /* responsive width */
-    height: 17vh;
-    max-width: 390px;         /* iphone 13 pro width */
+    width: 85%;              /* responsive width */
+    height: 30vh;
     aspect-ratio: 390 / 844;  /* iphone 13 pro ratio */
     border-radius: 1rem;
     padding: 1rem;
@@ -69,9 +68,9 @@ button {
 
 #usernameForm {
     display: flex;
-    gap: 0.5rem;
-    width: 50%;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
     align-items: center;
 }
 
@@ -85,6 +84,22 @@ button {
 
 #submitBtn {
     padding: 0.625rem 1.25rem;
+}
+
+.top-selection {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.timeframe {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
 }
 
 .grid {

@@ -12,7 +12,23 @@
             <h1>Last.fm Monthly Recap</h1>
             <form id="usernameForm" action="/api/username" method="post">
             <input type="text" id="usernameInput" name="username" placeholder="Enter username" required />
-            <button id="submitBtn">Submit</button>
+                <div class="top-selection">
+                    <input type="radio" id="Artists" name="TopSelection" required>
+                    <label for="Artists">Top Artists</label>
+                    <input type="radio" id="Tracks" name="TopSelection">
+                    <label for="Tracks">Top Tracks</label>
+                    <input type="radio" id="Albums" name="TopSelection">
+                    <label for="Albums">Top Albums</label>
+                </div>
+                <div class="timeframe">
+                    <input type="radio" id="oneMonth" name="timeFrame" required>
+                    <label for="oneMonth">1 Month</label>
+                    <input type="radio" id="threeMonths" name="timeFrame">
+                    <label for="threeMonths">3 Months</label>
+                    <input type="radio" id="oneYear" name="timeFrame">
+                    <label for="oneYear">1 Year</label>
+                </div>
+                <button id="submitBtn">Submit</button>
             </form>
         </div>
     </div>

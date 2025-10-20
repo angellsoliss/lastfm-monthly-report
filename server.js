@@ -45,10 +45,29 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
-//handle POST from form
+//handle POST from html form
 app.post("/api/username", async (req, res) => {
     const { username } = req.body;
     console.log("Username received:", username);
+
+    const topSelection = req.body.TopSelection;
+    const timeframe = req.body.timeFrame;
+
+    if (topSelection === "artists"){
+      console.log("you chose artists");
+    } else if (topSelection === "tracks") {
+      console.log("you chose tracks");
+    } else {
+      console.log("you chose albums");
+    }
+
+    if (timeframe === "one-month"){
+      console.log("you chose one month");
+    } else if (timeframe === "three-months"){
+      console.log("you chose three months");
+    } else {
+      console.log("you chose one year");
+    }
 
     //construct urls for api calls
     const albumParams = new URLSearchParams({

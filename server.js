@@ -60,20 +60,25 @@ app.post("/api/username", async (req, res) => {
     } else {
       console.log("you chose albums");
     }
+    
+    let timeframe4url = '';
 
     if (timeframe === "one-month"){
       console.log("you chose one month");
+      timeframe4url = '1month'
     } else if (timeframe === "three-months"){
       console.log("you chose three months");
+      timeframe4url = '3month'
     } else {
       console.log("you chose one year");
+      timeframe4url = '12month'
     }
 
     //construct urls for api calls
     const albumParams = new URLSearchParams({
         method: 'user.gettopalbums',
         user: username,
-        period: '1month',
+        period: timeframe4url,
         limit: '55',
         api_key: API_KEY,
         format: 'json'
@@ -81,7 +86,7 @@ app.post("/api/username", async (req, res) => {
     const artistParams = new URLSearchParams({
         method: 'user.gettopartists',
         user: username,
-        period: '1month',
+        period: timeframe4url,
         limit: '10',
         api_key: API_KEY,
         format: 'json'
@@ -142,12 +147,18 @@ app.post("/api/username", async (req, res) => {
         const currentYear = today.getFullYear();
         const currentDay = today.getDate();
 
-        //if the current day of the month is >= 20, report month is the current month, previous month otherwise
-        if (currentDay >= 20){
-            reportMonth = new Date(currentYear, currentMonth, 1).toLocaleString('default', { month: 'long' });
+        if (timeframe === "one-month"){
+          //if the current day of the month is >= 20, report month is the current month, previous month otherwise
+          if (currentDay >= 20){
+          reportMonth = new Date(currentYear, currentMonth, 1).toLocaleString('default', { month: 'long' });
+          } else {
+          const prevMonthDate = new Date(currentYear, currentMonth - 1, 1);
+          reportMonth = prevMonthDate.toLocaleString('default', { month: 'long' });
+          }
+        } else if (timeframe === "three-months"){
+          reportMonth = "3 Months";
         } else {
-            const prevMonthDate = new Date(currentYear, currentMonth - 1, 1);
-            reportMonth = prevMonthDate.toLocaleString('default', { month: 'long' });
+          reportMonth = "1 Year";
         }
 
         //pass data to ejs

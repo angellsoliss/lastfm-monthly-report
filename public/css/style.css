@@ -47,8 +47,8 @@ button {
 }
 
 .username_box {
-    width: 75%;              /* responsive width */
-    height: 17vh;
+    width: 80%;              /* responsive width */
+    height: 30vh;
     border-radius: 1rem;
     padding: 1rem;
     backdrop-filter: blur(1000px);
@@ -69,7 +69,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    width: 50%;
+    width: 100%;
     justify-content: center;
     align-items: center;
 }
@@ -87,24 +87,32 @@ button {
     padding: 0.625rem 1.25rem;
 }
 
-input[type="radio"] {
-  accent-color: #d1170e; /* Change to your desired color */
-}
-
-.top-selection {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  font-size: 0.9rem;
-}
-
 .timeframe {
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
   flex-wrap: wrap;
-  font-size: 0.9rem;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+.timeframe label {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.75rem;
+  border-radius: 0.313rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.timeframe input[type="radio"] {
+  display: none;
+}
+
+.timeframe input[type="radio"]:checked + label {
+  background: linear-gradient(145deg, #ff4c4c, #d1170e);
+  color: black;
+  transform: scale(1.05);
 }
 
 .grid {
@@ -190,7 +198,7 @@ input[type="radio"] {
 
   .username_box {
     width: 85%;
-    height: 15vh;
+    height: 30vh;
     padding: 0.8rem;
   }
 
@@ -198,12 +206,12 @@ input[type="radio"] {
     font-size: 1rem;
   }
 
-  #usernameForm {
-    width: 50%;
-  }
-
   #usernameInput {
     max-width: 50vw;
+    font-size: 0.7rem;
+  }
+
+  .timeframe label {
     font-size: 0.7rem;
   }
 
@@ -212,7 +220,7 @@ input[type="radio"] {
   }
 
   .artists ol {
-    font-size: 0.75em;
+    font-size: 0.70em;
 }
 
   .site_name {

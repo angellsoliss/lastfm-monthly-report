@@ -9,17 +9,9 @@
 <body>
     <div class="username_wrapper">
         <div class="username_box">
-            <h1>Last.fm Monthly Recap</h1>
+            <h1>Last.fm Recap</h1>
             <form id="usernameForm" action="/api/username" method="post">
             <input type="text" id="usernameInput" name="username" placeholder="Enter username" required />
-                <div class="top-selection">
-                    <input type="radio" id="Artists" name="TopSelection" value="artists" required>
-                    <label for="Artists">Top Artists</label>
-                    <input type="radio" id="Tracks" name="TopSelection" value="tracks">
-                    <label for="Tracks">Top Tracks</label>
-                    <input type="radio" id="Albums" name="TopSelection" value="albums">
-                    <label for="Albums">Top Albums</label>
-                </div>
                 <div class="timeframe">
                     <input type="radio" id="oneMonth" name="timeFrame" value="one-month" required>
                     <label for="oneMonth">1 Month</label>

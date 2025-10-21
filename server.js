@@ -50,17 +50,7 @@ app.post("/api/username", async (req, res) => {
     const { username } = req.body;
     console.log("Username received:", username);
 
-    const topSelection = req.body.TopSelection;
     const timeframe = req.body.timeFrame;
-
-    if (topSelection === "artists"){
-      console.log("you chose artists");
-    } else if (topSelection === "tracks") {
-      console.log("you chose tracks");
-    } else {
-      console.log("you chose albums");
-    }
-    
     let timeframe4url = '';
 
     if (timeframe === "one-month"){

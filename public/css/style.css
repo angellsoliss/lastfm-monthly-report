@@ -110,7 +110,7 @@ button {
 }
 
 .timeframe input[type="radio"]:checked + label {
-  background: linear-gradient(145deg, #ff4c4c, #d1170e);
+  background: #d1170e;
   color: black;
   transform: scale(1.05);
 }

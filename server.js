@@ -54,13 +54,10 @@ app.post("/api/username", async (req, res) => {
     let timeframe4url = '';
 
     if (timeframe === "one-month"){
-      console.log("you chose one month");
       timeframe4url = '1month'
     } else if (timeframe === "three-months"){
-      console.log("you chose three months");
       timeframe4url = '3month'
     } else {
-      console.log("you chose one year");
       timeframe4url = '12month'
     }
 
@@ -105,20 +102,24 @@ app.post("/api/username", async (req, res) => {
 
           //get top album cover for gradient color
           const topAlbumCover = formattedAlbums.length > 0 ? formattedAlbums[0].cover : null;
-          let vibrantHex = "#d1170e"
+          let vibrantHex = "#d1170e";
           
-          if (topAlbumCover){
+          if (!topAlbumCover){
+            console.error("Error fetching top album cover");
             //console.log(topAlbumCover);
-            const palette = await Vibrant.from(topAlbumCover).getPalette();
-            const rgb = palette.Vibrant._rgb;
-            
-            if (rgb){
-                vibrantHex = rgbToHex(rgb[0], rgb[1], rgb[2])
-            }
-            //console.log(vibrantHex);
-            //console.log(palette);
           }
 
+          const palette = await Vibrant.from(topAlbumCover).getPalette();
+          let rgb = palette.Vibrant._rgb;
+
+          if (!rgb){
+            console.error("Error fetching top album rgb code");
+          }
+
+          vibrantHex = rgbToHex(rgb[0], rgb[1], rgb[2]);
+          //console.log(vibrantHex);
+          //console.log(palette);
+          
         //fetch artists
         const artistResponse = await fetch(CONSTRUCTED_ARTIST_URL);
         const artistData = await artistResponse.json();
@@ -137,17 +138,17 @@ app.post("/api/username", async (req, res) => {
         const currentYear = today.getFullYear();
         const currentDay = today.getDate();
 
-        if (timeframe === "one-month"){
-          //if the current day of the month is >= 20, report month is the current month, previous month otherwise
-          if (currentDay >= 20){
+        if (timeframe === "one-month" && currentDay >= 20){
+          //if the current day of the month is >= 20, report month is the current month
           reportMonth = new Date(currentYear, currentMonth, 1).toLocaleString('default', { month: 'long' });
-          } else {
+        } else {
           const prevMonthDate = new Date(currentYear, currentMonth - 1, 1);
           reportMonth = prevMonthDate.toLocaleString('default', { month: 'long' });
-          }
-        } else if (timeframe === "three-months"){
+        }
+        
+        if (timeframe === "three-months"){
           reportMonth = "3 Months";
-        } else {
+        } else if (timeframe === "one-year") {
           reportMonth = "1 Year";
         }
 

@@ -41,9 +41,10 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, #d1170e, #7f1410, #2e1816, #121212, #272727, #767676, #FFFFFF);
-    background-size: 300% 300%;
-    animation: color 25s cubic-bezier(0.4, 0.0, 0.2, 0.1) infinite;
+    background-image: url("frutigerMetroLogin.svg");
+    background-size: cover;
+    background-position: center center;
+    background-position: fixed;
 }
 
 .username_box {
@@ -52,11 +53,16 @@ button {
     border-radius: 1rem;
     padding: 1rem;
     backdrop-filter: blur(1000px);
-    box-shadow: inset 0 0 10px rgba(209, 23, 14, 0.2), 0 0 25px rgba(209, 23, 14, 0.6), 0 0 45px rgba(209, 23, 14, 0.3);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* From https://css.glass */
+    background: rgba(141, 2, 2, 0.4);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.8px);
+    -webkit-backdrop-filter: blur(2.8px);
+    border: 1px solid rgba(141, 2, 2, 0.41);
 }
 
 .username_box h1 {
@@ -99,10 +105,13 @@ button {
   padding: 0.6rem 1.2rem;
   font-size: 0.75rem;
   border-radius: 0.313rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
   cursor: pointer;
   transition: all 0.25s ease;
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.48);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .timeframe input[type="radio"] {
@@ -171,18 +180,6 @@ button {
     font-size: 0.7em;
     color: white;
     z-index: 1000;
-}
-
-@keyframes color {
-    0% {
-        background-position: 0 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0 50%;
-    }
 }
 
 @media (max-width: 400px) {

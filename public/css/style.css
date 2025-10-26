@@ -48,7 +48,8 @@ button {
 }
 
 .username_box {
-    width: 80%;              /* responsive width */
+    width: 80%;
+    max-width: 500px;              /* responsive width */
     height: 30vh;
     border-radius: 1rem;
     padding: 1rem;
@@ -145,12 +146,15 @@ button {
 
 .profile_wrapper {
     width: 100%;
+    max-width: 500px;
     min-height: 100svh;
     background: linear-gradient(180deg, var(--theme-color), #030303, #030303);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    align-items: center;
+    margin: 0 auto; 
 }
 
 .artists {
